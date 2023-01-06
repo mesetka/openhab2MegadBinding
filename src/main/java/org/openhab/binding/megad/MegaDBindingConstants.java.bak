@@ -37,8 +37,6 @@ public class MegaDBindingConstants {
     public static final ThingTypeUID THING_TYPE_DEVICE_BRIDGE = new ThingTypeUID(BINDING_ID, "device");
     public static final ThingTypeUID THING_TYPE_INCOMING_BRIDGE = new ThingTypeUID(BINDING_ID, "tcp");
     public static final ThingTypeUID THING_TYPE_I2CBUSSENSOR = new ThingTypeUID(BINDING_ID, "i2cbussensor");
-    public static final ThingTypeUID THING_TYPE_I2CWALLMOUNT = new ThingTypeUID(BINDING_ID, "i2cwallmount");
-    public static final ThingTypeUID THING_TYPE_I2CWALLMOUNTNEW = new ThingTypeUID(BINDING_ID, "i2cwallmountnew");
     public static final ThingTypeUID THING_TYPE_RS485 = new ThingTypeUID(BINDING_ID, "rs485");
     public static final ThingTypeUID THING_TYPE_LCD1609 = new ThingTypeUID(BINDING_ID, "lcd1609");
     public static final ThingTypeUID THING_TYPE_ENCODER = new ThingTypeUID(BINDING_ID, "encoder");
@@ -71,14 +69,13 @@ public class MegaDBindingConstants {
     public static final String CHANNEL_CONTACT = "contact";
     public static final String CHANNEL_SMS_PHONE = "smsphone";
     public static final String CHANNEL_SMS_TEXT = "smstext";
+    public static final String CHANNEL_SMOOTH = "smoothtime";
 
     // i2c
     public static final String CHANNEL_I2C_TEMP = "temp";
     public static final String CHANNEL_I2C_HUM = "humidity";
     public static final String CHANNEL_I2C_PRESSURE = "pressure";
     public static final String CHANNEL_I2C_GAS = "gas";
-    public static final String CHANNEL_I2C_LIGHTLEVEL = "lightlevel";
-    public static final String CHANNEL_I2C_CO = "co";
     public static final String CHANNEL_I2C_OTHER = "other";
 
     // extender
@@ -92,15 +89,16 @@ public class MegaDBindingConstants {
     public static final String CHANNEL_PAR0 = "par0";
     public static final String CHANNEL_PAR1 = "par1";
     public static final String CHANNEL_PAR2 = "par2";
-    public static final String CHANNEL_PAR3 = "par3";
     public static final String CHANNEL_I2CRAW = "i2craw";
 
     // rs485 sdm120
     public static final String CHANNEL_VOLTAGE = "voltage";
     public static final String CHANNEL_CURRENT = "current";
     public static final String CHANNEL_ACTIVEPOWER = "activepower";
+    public static final String CHANNEL_ACTIVEENERGY = "actnrg";
     public static final String CHANNEL_APPARENTPOWER = "apparentpower";
     public static final String CHANNEL_REACTIVEPOWER = "reactivepower";
+    public static final String CHANNEL_REACTIVEENERGY = "reactnrg";
     public static final String CHANNEL_POWERFACTOR = "powerfactor";
     public static final String CHANNEL_PHASEANGLE = "phaseangle";
     public static final String CHANNEL_FREQUENCY = "frequency";

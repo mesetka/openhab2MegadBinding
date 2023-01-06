@@ -32,8 +32,6 @@ import org.openhab.binding.megad.handler.MegaDExtenderPCA9685Handler;
 import org.openhab.binding.megad.handler.MegaDGroupHandler;
 import org.openhab.binding.megad.handler.MegaDItoCHandler;
 import org.openhab.binding.megad.handler.MegaDItoCSensorHandler;
-import org.openhab.binding.megad.handler.MegaDItoCWallmountHandler;
-import org.openhab.binding.megad.handler.MegaDItoCWallmountNewHandler;
 import org.openhab.binding.megad.handler.MegaDLcd1609Handler;
 import org.openhab.binding.megad.handler.MegaDPortsHandler;
 import org.openhab.binding.megad.handler.MegaDRs485Handler;
@@ -74,8 +72,6 @@ public class MegaDHandlerFactory extends BaseThingHandlerFactory {
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_INCOMING_BRIDGE);
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_ITOC_BRIDGE);
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_I2CBUSSENSOR);
-        SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_I2CWALLMOUNT);
-        SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_I2CWALLMOUNTNEW);
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_MEGAPORTS_STD);
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_RS485);
         SUPPORTED_THING_TYPES_UIDS.add(THING_TYPE_LCD1609);
@@ -117,10 +113,6 @@ public class MegaDHandlerFactory extends BaseThingHandlerFactory {
             return new MegaDBridgeIToCHandler((Bridge) thing);
         } else if (thingTypeUID.equals(THING_TYPE_I2CBUSSENSOR)) {
             return new MegaDItoCSensorHandler(thing);
-        } else if (thingTypeUID.equals(THING_TYPE_I2CWALLMOUNT)) {
-            return new MegaDItoCWallmountHandler(thing);
-        } else if (thingTypeUID.equals(THING_TYPE_I2CWALLMOUNTNEW)) {
-            return new MegaDItoCWallmountNewHandler(thing);
         } else if (thingTypeUID.equals(THING_TYPE_RS485)) {
             return new MegaDRs485Handler(thing);
         } else if (thingTypeUID.equals(THING_TYPE_LCD1609)) {

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2022 Contributors to the openHAB project
+ * Copyright (c) 2010-2021 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -103,10 +103,6 @@ public class MegaDItoCSensorHandler extends BaseThingHandler {
                             + bridgeDeviceHandler.getThing().getConfiguration().get("port").toString() + "&scl="
                             + bridgeDeviceHandler.getThing().getConfiguration().get("scl").toString() + "&i2c_dev="
                             + getThing().getConfiguration().get("sensortype").toString();
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException ignored) {
-                    }
                     String updateRequest = MegaHttpHelpers.sendRequest(result);
 
                     if ("NA".equals(updateRequest)) {
@@ -127,10 +123,6 @@ public class MegaDItoCSensorHandler extends BaseThingHandler {
                             + bridgeDeviceHandler.getThing().getConfiguration().get("port").toString() + "&scl="
                             + bridgeDeviceHandler.getThing().getConfiguration().get("scl").toString() + "&i2c_dev="
                             + getThing().getConfiguration().get("sensortype").toString() + "&i2c_par=1";
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException ignored) {
-                    }
                     String updateRequest = MegaHttpHelpers.sendRequest(result);
 
                     if ("NA".equals(updateRequest)) {
@@ -151,10 +143,6 @@ public class MegaDItoCSensorHandler extends BaseThingHandler {
                             + bridgeDeviceHandler.getThing().getConfiguration().get("port").toString() + "&scl="
                             + bridgeDeviceHandler.getThing().getConfiguration().get("scl").toString() + "&i2c_dev="
                             + getThing().getConfiguration().get("sensortype").toString() + "&i2c_par=2";
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException ignored) {
-                    }
                     String updateRequest = MegaHttpHelpers.sendRequest(result);
 
                     if ("NA".equals(updateRequest)) {
@@ -166,30 +154,6 @@ public class MegaDItoCSensorHandler extends BaseThingHandler {
                         } catch (Exception ex) {
                             logger.debug("Value {} is incorrect for channel {}", updateRequest,
                                     MegaDBindingConstants.CHANNEL_PAR2);
-                        }
-                    }
-                } else if (channel.getUID().getId().equals(MegaDBindingConstants.CHANNEL_PAR3)) {
-                    assert bridgeDeviceHandler != null;
-                    String result = "http://" + Objects.requireNonNull(getBridgeHandler()).getHostPassword()[0] + "/"
-                            + Objects.requireNonNull(getBridgeHandler()).getHostPassword()[1] + "/?pt="
-                            + bridgeDeviceHandler.getThing().getConfiguration().get("port").toString() + "&scl="
-                            + bridgeDeviceHandler.getThing().getConfiguration().get("scl").toString() + "&i2c_dev="
-                            + getThing().getConfiguration().get("sensortype").toString() + "&i2c_par=3";
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException ignored) {
-                    }
-                    String updateRequest = MegaHttpHelpers.sendRequest(result);
-
-                    if ("NA".equals(updateRequest)) {
-                        logger.debug("Value {} is incorrect for channel {}", updateRequest,
-                                MegaDBindingConstants.CHANNEL_PAR3);
-                    } else {
-                        try {
-                            updateState(channel.getUID().getId(), DecimalType.valueOf(updateRequest));
-                        } catch (Exception ex) {
-                            logger.debug("Value {} is incorrect for channel {}", updateRequest,
-                                    MegaDBindingConstants.CHANNEL_PAR3);
                         }
                     }
                 } else if (channel.getUID().getId().equals(MegaDBindingConstants.CHANNEL_I2CRAW)) {
@@ -209,10 +173,6 @@ public class MegaDItoCSensorHandler extends BaseThingHandler {
                                 + bridgeDeviceHandler.getThing().getConfiguration().get("scl").toString() + "&i2c_dev="
                                 + getThing().getConfiguration().get("sensortype").toString();
                     }
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException ignored) {
-                    }
                     String updateRequest = MegaHttpHelpers.sendRequest(result);
 
                     try {
@@ -220,33 +180,6 @@ public class MegaDItoCSensorHandler extends BaseThingHandler {
                     } catch (Exception ex) {
                         logger.debug("Value {} is incorrect for channel {}", updateRequest,
                                 MegaDBindingConstants.CHANNEL_I2CRAW);
-                    }
-                }
-                if (!channel.getConfiguration().getProperties().isEmpty()) {
-                    logger.debug("Channel {}... dynamically created", channel.getLabel());
-                    logger.debug("Channel {}... parameter is {} ", channel.getLabel(),
-                            channel.getConfiguration().get("i2cparameter"));
-
-                    String result = "http://" + Objects.requireNonNull(getBridgeHandler()).getHostPassword()[0] + "/"
-                            + Objects.requireNonNull(getBridgeHandler()).getHostPassword()[1] + "/?pt="
-                            + bridgeDeviceHandler.getThing().getConfiguration().get("port").toString() + "&scl="
-                            + bridgeDeviceHandler.getThing().getConfiguration().get("scl").toString() + "&i2c_dev="
-                            + getThing().getConfiguration().get("sensortype").toString() + "&"
-                            + channel.getConfiguration().get("i2cparameter");
-                    try {
-                        Thread.sleep(200);
-                    } catch (InterruptedException ignored) {
-                    }
-                    String updateRequest = MegaHttpHelpers.sendRequest(result);
-
-                    if ("NA".equals(updateRequest)) {
-                        logger.debug("Value {} is incorrect for channel {}", updateRequest, channel.getLabel());
-                    } else {
-                        try {
-                            updateState(channel.getUID().getId(), DecimalType.valueOf(updateRequest));
-                        } catch (Exception ex) {
-                            logger.debug("Value {} is incorrect for channel {}", updateRequest, channel.getLabel());
-                        }
                     }
                 }
             }

@@ -16,6 +16,12 @@
 		<label>Input</label>
 		<description>Port set as input signal for switch using</description>
 	</channel-type>
+	<channel-type id="motion">
+		<item-type>Switch</item-type>
+		<label>Motion Sensor</label>
+		<description>Port set as input signal for motion sensor</description>
+		<category>Motion</category>
+	</channel-type>
 	<channel-type id="incount">
 		<item-type>Number</item-type>
 		<label>Input counter</label>
@@ -61,7 +67,20 @@
 		<item-type>Number:Temperature</item-type>
 		<label>Temperature</label>
 		<description>Temperature from sensor</description>
+		<category>Temperature</category>
 		<state readOnly="true" pattern="%.1f %unit%"/>
+	</channel-type>
+	<channel-type id="co">
+		<item-type>Number:Dimensionless</item-type>
+		<label>CO</label>
+		<description>CO from sensor</description>
+		<state readOnly="true" pattern="%.1f ppm"/>
+	</channel-type>
+	<channel-type id="lightlevel">
+		<item-type>Number:Dimensionless</item-type>
+		<label>Lightlevel</label>
+		<description>Lightlevel from sensor</description>
+		<state readOnly="true" pattern="%.1f lux"/>
 	</channel-type>
 	<channel-type id="1wtemp">
 		<item-type>Number:Temperature</item-type>
@@ -73,6 +92,7 @@
 		<item-type>Number:Dimensionless</item-type>
 		<label>Humidity</label>
 		<description>Humidity from sensor</description>
+		<category>Humidity</category>
 		<state readOnly="true" pattern="%.1f %%"/>
 	</channel-type>
 	<channel-type id="pressure">
