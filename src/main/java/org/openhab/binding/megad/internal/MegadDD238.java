@@ -68,32 +68,32 @@ public class MegadDD238 implements ModbusPowermeterInterface {
     }
 
     @Override
-    public String getCurrent() {
+    public String getCurrent(int line) {
         return String.valueOf((double) Integer.parseInt(answer[29] + answer[30], 16) / 100);
     }
 
     @Override
-    public String getActivePower() {
+    public String getActivePower(int line) {
         return String.valueOf(Math.abs((short) Integer.parseInt(answer[31] + answer[32], 16)));
     }
 
     @Override
-    public String getApparentPower() {
+    public String getApparentPower(int line) {
         return String.valueOf((double) Integer.parseInt(answer[33] + answer[34], 16));
     }
 
     @Override
-    public String getReactivePower() {
+    public String getReactivePower(int line) {
         return "null";
     }
 
     @Override
-    public String getPowerFactor() {
+    public String getPowerFactor(int line) {
         return String.valueOf((double) Integer.parseInt(answer[35] + answer[36], 16) / 1000);
     }
 
     @Override
-    public String getPhaseAngle() {
+    public String getPhaseAngle(int line) {
         return "null";
     }
 
@@ -168,20 +168,26 @@ public class MegadDD238 implements ModbusPowermeterInterface {
     }
 
     @Override
-    public String getTotalReactiveActiveEnergy() {
+    public String getTotalReactiveActiveEnergy(int line) {
         return "null";
     }
 
     @Override
     public List<Channel> getChannelsList(Thing thing) {
         List<Channel> channelList = new ArrayList<>();
-        channelList.add(Objects.requireNonNull(thing.getChannel(MegaDBindingConstants.CHANNEL_VOLTAGE)));
-        channelList.add(Objects.requireNonNull(thing.getChannel(MegaDBindingConstants.CHANNEL_CURRENT)));
-        channelList.add(Objects.requireNonNull(thing.getChannel(MegaDBindingConstants.CHANNEL_FREQUENCY)));
-        channelList.add(Objects.requireNonNull(thing.getChannel(MegaDBindingConstants.CHANNEL_ACTIVEPOWER)));
-        channelList.add(Objects.requireNonNull(thing.getChannel(MegaDBindingConstants.CHANNEL_POWERFACTOR)));
-        channelList.add(Objects.requireNonNull(thing.getChannel(MegaDBindingConstants.CHANNEL_APPARENTPOWER)));
-        channelList.add(Objects.requireNonNull(thing.getChannel(MegaDBindingConstants.CHANNEL_TOTALACTNRG)));
+        channelList.add(Objects.requireNonNull(thing.getChannel("cmn#" + MegaDBindingConstants.CHANNEL_VOLTAGE)));
+        channelList.add(Objects.requireNonNull(thing.getChannel("line1#" + MegaDBindingConstants.CHANNEL_CURRENT)));
+        channelList.add(Objects.requireNonNull(thing.getChannel("cmn#" + MegaDBindingConstants.CHANNEL_FREQUENCY)));
+        channelList.add(Objects.requireNonNull(thing.getChannel("line1#" + MegaDBindingConstants.CHANNEL_ACTIVEPOWER)));
+        channelList.add(Objects.requireNonNull(thing.getChannel("line1#" + MegaDBindingConstants.CHANNEL_POWERFACTOR)));
+        channelList
+                .add(Objects.requireNonNull(thing.getChannel("line1#" + MegaDBindingConstants.CHANNEL_APPARENTPOWER)));
+        channelList.add(Objects.requireNonNull(thing.getChannel("cmn#" + MegaDBindingConstants.CHANNEL_TOTALACTNRG)));
         return channelList;
+    }
+
+    @Override
+    public String getActiveEnergy(int line) {
+        return " ";
     }
 }

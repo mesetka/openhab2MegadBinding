@@ -29,17 +29,17 @@ public interface ModbusPowermeterInterface {
 
     void updateValues();
 
-    String getCurrent();
+    String getCurrent(int line);
 
-    String getActivePower();
+    String getActivePower(int line);
 
-    String getApparentPower();
+    String getApparentPower(int line);
 
-    String getReactivePower();
+    String getReactivePower(int line);
 
-    String getPowerFactor();
+    String getPowerFactor(int line);
 
-    String getPhaseAngle();
+    String getPhaseAngle(int line);
 
     String getFrequency();
 
@@ -69,7 +69,9 @@ public interface ModbusPowermeterInterface {
 
     String getTotalActiveEnergy();
 
-    String getTotalReactiveActiveEnergy();
+    String getTotalReactiveActiveEnergy(int line);
 
     List<Channel> getChannelsList(Thing thing);
+
+    String getActiveEnergy(int line);
 }
